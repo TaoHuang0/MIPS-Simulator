@@ -40,7 +40,7 @@ r_instruction *create_r_instruction(uint32_t instruct){
 	r_components->rt = bit_select(instruct, 20, 16);
 	r_components->rd = bit_select(instruct, 15, 11);
 	r_components->shamt = bit_select(instruct, 10, 6);
-	r_components->funct = bit_select(instruct, 5, 0);
+	r_components->func = bit_select(instruct, 5, 0);
 	return &r_components;
 } // end create_r_instruction() function
 
