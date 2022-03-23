@@ -36,11 +36,11 @@ instruction_type get_type_of_instruction(uint32_t instruct){
 //
 r_instruction *create_r_instruction(uint32_t instruct){
 	r_instruction* r_components = (r_instruction*) malloc(5);
-	r_components->rs = bit_select(instruct, 10, 6);
-	r_components->rt = bit_select(instruct, 15, 11);
-	r_components->rd = bit_select(instruct, 20, 16);
-	r_components->shamt = bit_select(instruct, 25, 21);
-	r_components->rt = bit_select(instruct, 31, 26);
+	r_components->rs = bit_select(instruct, 25, 21);
+	r_components->rt = bit_select(instruct, 20, 16);
+	r_components->rd = bit_select(instruct, 15, 11);
+	r_components->shamt = bit_select(instruct, 10, 6);
+	r_components->funct = bit_select(instruct, 5, 0);
 	return &r_components;
 } // end create_r_instruction() function
 
@@ -56,9 +56,9 @@ r_instruction *create_r_instruction(uint32_t instruct){
 //
 i_instruction *create_i_instruction(uint32_t instruct){
 	i_instruction* i_components = (i_instruction*) malloc(5);
-	i_components->opcode = bit_select(instruct, 5, 0);
-	i_components->rs = bit_select(instruct, 10, 6);
-	i_components->rt = bit_select(instruct, 15, 11);
-	i_components->immediate = bit_select(instruct, 31, 16);
+	i_components->opcode = bit_select(instruct, 31, 26);
+	i_components->rs = bit_select(instruct, 25, 21);
+	i_components->rt = bit_select(instruct, 20, 16);
+	i_components->immediate = bit_select(instruct, 15, 0);
 	return &i_components;
 } // end create_i_instruction() function
