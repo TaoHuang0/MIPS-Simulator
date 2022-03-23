@@ -17,8 +17,7 @@
 // Return:      instruction_type: R_TYPE or I_TYPE (see instructions.h)
 //
 instruction_type get_type_of_instruction(uint32_t instruct){
-	char *bit = itob(instruct, 32);
-	if(bit[0] == 0 && bit[1] == 0 && bit[2] == 0 && bit[3] == 0 && bit[4] == 0 && bit[5] == 0){
+	if(bit_select(instruct, 5, 0) == 0){
 		return R_TYPE;
 	}else{
 		return I_TYPE;
