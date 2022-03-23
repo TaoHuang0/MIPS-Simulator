@@ -23,7 +23,6 @@ instruction_type get_type_of_instruction(uint32_t instruct){
 	}else{
 		return I_TYPE;
 	}
-
 } // end get_type_of_instruction() function
 
 // ------------------------------------
@@ -37,9 +36,13 @@ instruction_type get_type_of_instruction(uint32_t instruct){
 //              you will have to set: rs, rt, rd, shamt, func
 //
 r_instruction *create_r_instruction(uint32_t instruct){
-
-	// Your code here
-
+	r_instruction* r_components = (r_instruction*) malloc(5);
+	r_components->rs = bit_select(instruct, 10, 6);
+	r_components->rt = bit_select(instruct, 15, 11);
+	r_components->rd = bit_select(instruct, 20, 16);
+	r_components->shamt = bit_select(instruct, 25, 21);
+	r_components->rt = bit_select(instruct, 31, 26);
+	return &r_components;
 } // end create_r_instruction() function
 
 // ------------------------------------
@@ -53,7 +56,10 @@ r_instruction *create_r_instruction(uint32_t instruct){
 //              you will have to set: opcode, rs, rt, immediate
 //
 i_instruction *create_i_instruction(uint32_t instruct){
-
-	// Your code here
-
+	i_instruction* i_components = (i_instruction*) malloc(5);
+	i_components->opcode = bit_select(instruct, 5, 0);
+	i_components->rs = bit_select(instruct, 10, 6);
+	i_components->rt = bit_select(instruct, 15, 11);
+	i_components->immediate = bit_select(instruct, 31, 16);
+	return &i_components;
 } // end create_i_instruction() function
