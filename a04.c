@@ -69,7 +69,6 @@ int main(){
 // Return:      None
 //
 void execute_r_instruction(r_instruction *instruct){
-	printf("%d\n", instruct->rd);
 	if(instruct->func == 0){
 		registers[instruct->rd] = registers[instruct->rt] << instruct->shamt;
 	}else if(instruct->func == 3){
@@ -100,7 +99,6 @@ void execute_r_instruction(r_instruction *instruct){
 // Return:      None
 //
 void execute_i_instruction(i_instruction *instruct){
-	printf("%d\n", instruct->rt);
 	if(instruct->opcode == 8){
 		registers[instruct->rt] = registers[instruct->rs] + instruct->immediate;
 	}else if(instruct->opcode == 12){
