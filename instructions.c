@@ -16,7 +16,7 @@
 // Return:      instruction_type: R_TYPE or I_TYPE (see instructions.h)
 //
 instruction_type get_type_of_instruction(uint32_t instruct){
-	if(bit_select(instruct, 31, 26) == 0){
+	if(bit_select(instruct, OPCODE_START_BIT, OPCODE_END_BIT) == R_TYPE_OPCODE){
 		return R_TYPE;
 	}else{
 		return I_TYPE;
@@ -34,13 +34,13 @@ instruction_type get_type_of_instruction(uint32_t instruct){
 //              you will have to set: rs, rt, rd, shamt, func
 //
 r_instruction *create_r_instruction(uint32_t instruct){
-	r_instruction* r_components = (r_instruction*) malloc(5);
-	r_components->rs = bit_select(instruct, 25, 21);
-	r_components->rt = bit_select(instruct, 20, 16);
-	r_components->rd = bit_select(instruct, 15, 11);
-	r_components->shamt = bit_select(instruct, 10, 6);
-	r_components->func = bit_select(instruct, 5, 0);
-	return &r_components;
+	r_instruction *r_components = malloc(sizeof(r_instruction));
+	r_components->rs = bit_select(instruct, RS_START_BIT, RS_END_BIT);
+	r_components->rt = bit_select(instruct, RT_START_BIT, RT_END_BIT);
+	r_components->rd = bit_select(instruct, RD_START_BIT, RD_END_BIT);
+	r_components->shamt = bit_select(instruct, SHAMT_START_BIT, SHAMT_END_BIT);
+	r_components->func = bit_select(instruct, FUNC_START_BIT, FUNC_END_BIT);
+	return r_components;
 } // end create_r_instruction() function
 
 // ------------------------------------
@@ -54,10 +54,10 @@ r_instruction *create_r_instruction(uint32_t instruct){
 //              you will have to set: opcode, rs, rt, immediate
 //
 i_instruction *create_i_instruction(uint32_t instruct){
-	i_instruction* i_components = (i_instruction*) malloc(5);
-	i_components->opcode = bit_select(instruct, 31, 26);
-	i_components->rs = bit_select(instruct, 25, 21);
-	i_components->rt = bit_select(instruct, 20, 16);
-	i_components->immediate = bit_select(instruct, 15, 0);
-	return &i_components;
+	i_instruction *i_components = malloc(sizeof(i_instruction));
+	i_components->opcode = bit_select(instruct, OPCODE_START_BIT, OPCODE_END_BIT);
+	i_components->rs = bit_select(instruct, RS_START_BIT, RS_END_BIT);
+	i_components->rt = bit_select(instruct, RT_START_BIT, RT_END_BIT);
+	i_components->immediate = bit_select(instruct, IMMEDIATE_START_BIT, IMMEDIATE_END_BIT);
+	return i_components;
 } // end create_i_instruction() function

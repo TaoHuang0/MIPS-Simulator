@@ -69,19 +69,19 @@ int main(){
 // Return:      None
 //
 void execute_r_instruction(r_instruction *instruct){
-	if(instruct->func == 0){
+	if(instruct->func == SLL_FUNC){
 		registers[instruct->rd] = registers[instruct->rt] << instruct->shamt;
-	}else if(instruct->func == 3){
+	}else if(instruct->func == SRA_FUNC){
 		registers[instruct->rd] = registers[instruct->rt] >> instruct->shamt; 
-	}else if(instruct->func == 32){
+	}else if(instruct->func == ADD_FUNC){
                 registers[instruct->rd] = registers[instruct->rs] + registers[instruct->rt];
-	}else if(instruct->func == 34){
+	}else if(instruct->func == SUB_FUNC){
 		registers[instruct->rd] = registers[instruct->rs] - registers[instruct->rt];
-	}else if(instruct->func == 36){
+	}else if(instruct->func == AND_FUNC){
 		registers[instruct->rd] = registers[instruct->rs] & registers[instruct->rt];
-	}else if(instruct->func == 37){
+	}else if(instruct->func == OR_FUNC){
                 registers[instruct->rd] = registers[instruct->rs] | registers[instruct->rt];
-	}else if(instruct->func == 39){
+	}else if(instruct->func == NOR_FUNC){
                 registers[instruct->rd] = ~(registers[instruct->rs] | registers[instruct->rt]);
 	}
 } // end execute_r_instruction() function 
@@ -99,11 +99,11 @@ void execute_r_instruction(r_instruction *instruct){
 // Return:      None
 //
 void execute_i_instruction(i_instruction *instruct){
-	if(instruct->opcode == 8){
+	if(instruct->opcode == ADDI_OPCODE){
 		registers[instruct->rt] = registers[instruct->rs] + instruct->immediate;
-	}else if(instruct->opcode == 12){
+	}else if(instruct->opcode == ANDI_OPCODE){
                 registers[instruct->rt] = registers[instruct->rs] & instruct->immediate;
-	}else if(instruct->opcode == 13){
+	}else if(instruct->opcode == ORI_OPCODE){
                 registers[instruct->rt] = registers[instruct->rs] | instruct->immediate;
 	}
 } // end execute_i_instruction() function 
