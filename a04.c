@@ -69,8 +69,21 @@ int main(){
 // Return:      None
 //
 void execute_r_instruction(r_instruction *instruct){
-	
-
+	if(instruct->func == 0){
+		registers[instruct->rd] = registers[instruct->rt] << instruct->shamt;
+	}else if(instruct->func == 3){
+		registers[instruct->rd] = registers[instruct->rt] >> instruct->shamt; 
+	}else if(instruct->func == 32){
+                registers[instruct->rd] = registers[instruct->rs] + registers[instruct->rt];
+	}else if(instruct->func == 34){
+		registers[instruct->rd] = registers[instruct->rs] - registers[instruct->rt];
+	}else if(instruct->func == 36){
+		registers[instruct->rd] = registers[instruct->rs] & registers[instruct->rt];
+	}else if(instruct->func == 37){
+                registers[instruct->rd] = registers[instruct->rs] | registers[instruct->rt];
+	}else if(instruct->func == 39){
+                registers[instruct->rd] = ~(registers[instruct->rs] | registers[instruct->rt]);
+	}
 } // end execute_r_instruction() function 
 
 // ------------------------------------
@@ -86,6 +99,11 @@ void execute_r_instruction(r_instruction *instruct){
 // Return:      None
 //
 void execute_i_instruction(i_instruction *instruct){
-
-
+	if(instruct->opcode == 8){
+		registers[instruct->rt] = registers[instruct->rs] + instruct->immediate;
+	}else if(instruct->opcode == 12){
+                registers[instruct->rt] = registers[instruct->rs] & instruct->immediate;
+	}else if(instruct->opcode == 13){
+                registers[instruct->rt] = registers[instruct->rs] | instruct->immediate;
+	}
 } // end execute_i_instruction() function 
