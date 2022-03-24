@@ -6,7 +6,6 @@
 
 #include "bit_utils.h"
 #include "instructions.h"
-#include "bit_utils.c"
 
 // ------------------------------------
 // Function implementation that determines whether you are
